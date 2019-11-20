@@ -1,3 +1,5 @@
 *.dll
 *.so
 *.pyc
+*.zip
+*.7z
