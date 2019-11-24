@@ -41,7 +41,7 @@ def generateMap2d(size_):
     map2d[xloc[0]][yloc[0]] = -2
     map2d[xloc[1]][yloc[1]] = -3
 
-    return map2d
+    return map2d, dict(start={"x":xloc[0], "y":yloc[0]}, goal={"x":xloc[1], "y":yloc[1]})
 
 # Generate 2d grid map with rotated-H-shape object
 def generateMap2d_obstacle(size_):

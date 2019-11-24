@@ -15,7 +15,7 @@ class PriorityQueue:
 
 # An example of search algorithm
 # modify it and implment the missing part
-def search(map, start, goal, ...):
+def search(map, start, goal, something):
 
     # cost moving to another cell
     moving_cost = 1
@@ -50,7 +50,7 @@ def search(map, start, goal, ...):
 
             # compute cost to reach next cell
             # Implement cost function
-            cost = cost_function()
+            cost = cost_function(current, next)
 
             # add next cell to open list
             frontier.add(next, cost)
@@ -58,3 +58,10 @@ def search(map, start, goal, ...):
             came_from[next] = current
 
     return came_from, cost
+
+def cost_function(neighbourghs, nextNeighbourgs):
+    
+    
+
+    # return theCost
+    pass
