@@ -1,12 +1,12 @@
-import heapq
-
-# Priority Queue based on heapq
 class PriorityQueue:
     def __init__(self):
         self.elements = []
     def isEmpty(self):
         return len(self.elements) == 0
-    def add(self, item, priority):
-        heapq.heappush(self.elements,(priority,item))
+    def add(self, item):
+        self.elements.append(item)
+        self.elements.sort(key=lambda item: item.cost)
     def remove(self):
-        return heapq.heappop(self.elements)[1]
+        theItem = self.elements[0]
+        self.elements.remove(theItem)
+        return theItem
