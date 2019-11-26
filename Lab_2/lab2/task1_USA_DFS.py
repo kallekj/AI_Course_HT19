@@ -12,7 +12,7 @@ cells with a value of 0: Free cell;
                      -3: Goal point;
 """
 
-class RandomSearch():
+class DFSearch():
     def __init__(self):
         self.queue = PriorityQueue()
         self.path = [[],[]]
@@ -45,7 +45,7 @@ class RandomSearch():
             return neighbors
         
         def _cost_function(theNodeCords, theGoal):
-            return random.randint(1, 5)
+            return 1
             #return abs(theGoal.pos[0] - theNodeCords[0]) + abs(theGoal.pos[1] - theNodeCords[1])
 
         def _calc_path(theStart, theGoal):
@@ -62,7 +62,7 @@ class RandomSearch():
 
         # if there is still nodes to open
         while not self.queue.isEmpty():
-            current = self.queue.remove()
+            current = self.queue.pop()
 
             # check if the goal is reached
             if current.pos == goal.pos:
@@ -75,7 +75,7 @@ class RandomSearch():
                 if theMap[next.pos[0]][next.pos[1]] == 0:
                     theMap[next.pos[0]][next.pos[1]] = 1
 
-                self.queue.sort_add(next)
+                self.queue.add(next)
 
         return self.path
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0)
     goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0)
 
-    searcher = RandomSearch()
+    searcher = DFSearch()
     searcher.search(map_object, start, goal)
 
     pp.plotMap(example_solved_map,searcher.path)
