@@ -12,7 +12,7 @@ cells with a value of 0: Free cell;
                      -3: Goal point;
 """
 
-class RandomSearch():
+class BFSearch():
     def __init__(self):
         self.queue = PriorityQueue()
         self.path = [[],[]]
@@ -36,16 +36,28 @@ class RandomSearch():
             # Gets the neighbors to current, if the node is not a wall (-1) or already visited (1), and also a check if the value is in range
             for i in range(3):
                 if (xCords+(-1+i) not in {-1,xCords,len(theMap[0])}):
-                    if theMap[xCords+(-1+i)][yCords] not in {-1,1}:
-                        neighbors.append(Node([xCords+(-1+i), yCords], current, _cost_function([xCords+(-1+i), yCords], goal)))
+                    nodeCost = _cost_function()
+                    newNode = Node([xCords+(-1+i), yCords], current, nodeCost, current.depth+1)
+
+                    if theMap[xCords+(-1+i)][yCords] in {0, -3}:
+                        neighbors.append(newNode) 
+
                 if (yCords+(-1+i) not in {-1, yCords, len(theMap[1])}):
-                    if theMap[xCords][yCords+(-1+i)] not in {-1, 1}:
-                        neighbors.append(Node([xCords, yCords+(-1+i)], current, _cost_function([xCords, yCords+(-1+i)], goal)))
+                    nodeCost = _cost_function()
+                    newNode = Node([xCords, yCords+(-1+i)], current, nodeCost, current.depth+1)
+
+                    if theMap[xCords][yCords+(-1+i)] in {0, -3}:
+                        neighbors.append(newNode)
+
+            # ändra, ifall besökt noden, kolla om kostnaden är högre, så ersätt
+            # till A*
+            #         if theMap[xCords+(-1+i)][yCords] > nodeCost or theMap[xCords+(-1+i)][yCords] in {0, -3}:
+            #             neighbors.append(newNode) 
 
             return neighbors
         
-        def _cost_function(theNodeCords, theGoal):
-            return random.randint(1, 5)
+        def _cost_function():
+            return 1
             #return abs(theGoal.pos[0] - theNodeCords[0]) + abs(theGoal.pos[1] - theNodeCords[1])
 
         def _calc_path(theStart, theGoal):
@@ -73,9 +85,9 @@ class RandomSearch():
             for next in _get_neighbors(current, theMap):
 
                 if theMap[next.pos[0]][next.pos[1]] == 0:
-                    theMap[next.pos[0]][next.pos[1]] = 1
+                    theMap[next.pos[0]][next.pos[1]] = next.depth
 
-                self.queue.sort_add(next)
+                self.queue.add(next)
 
         return self.path
 
@@ -90,10 +102,10 @@ if __name__ == "__main__":
 
     example_solved_map = map_object
 
-    start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0)
-    goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0)
+    start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0, 0)
+    goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0, 0)
 
-    searcher = RandomSearch()
+    searcher = BFSearch()
     searcher.search(map_object, start, goal)
 
     pp.plotMap(example_solved_map,searcher.path)
