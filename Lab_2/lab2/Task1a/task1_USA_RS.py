@@ -16,6 +16,7 @@ class RandomSearch():
     def __init__(self):
         self.queue = PriorityQueue()
         self.path = [[],[]]
+        self.searchedNodes = 0
 
     def search(self, theMap, start, goal):
         
@@ -84,6 +85,7 @@ class RandomSearch():
                 if theMap[next.pos[0]][next.pos[1]] == 0:
                     theMap[next.pos[0]][next.pos[1]] = next.depth
 
+                self.searchedNodes += 1
                 self.queue.sort_add(next)
 
         return self.path
@@ -91,21 +93,15 @@ class RandomSearch():
 
 
 if __name__ == "__main__":
-        
+      
     # map_object, info = pp.generateMap2d([60,60])
     map_object = pp.generateMap2d([60, 60])
-    plt.clf()
-    plt.imshow(map_object)
-
-    example_solved_map = map_object
 
     start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0, 0)
     goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0, 0)
 
     searcher = RandomSearch()
     searcher.search(map_object, start, goal)
-
-    pp.plotMap(example_solved_map,searcher.path)
-    plt.clf()
-    plt.imshow(map_object)
-    plt.show()
+    print("Number of visited nodes: {}".format(searcher.searchedNodes))
+    print("Length of path: {}".format(len(searcher.path[0])+len(searcher.path[1])))
+    pp.plotMap(map_object,searcher.path)
