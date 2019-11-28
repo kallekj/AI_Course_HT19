@@ -12,7 +12,7 @@ cells with a value of 0: Free cell;
                      -3: Goal point;
 """
 
-class RandomSearch():
+class BFSearch():
     def __init__(self):
         self.queue = PriorityQueue()
         self.path = [[],[]]
@@ -33,7 +33,7 @@ class RandomSearch():
             #         [58,23]         #
             #                         #
             ###########################
-
+            
             # Gets the neighbors to current, if the node is not a wall (-1) or if the node has not been visited, and also a check if the value is in range
             for i in range(3):
                 if (xCords+(-1+i) not in {-1,xCords,len(theMap[0])}):
@@ -50,10 +50,11 @@ class RandomSearch():
                     if theMap[xCords][yCords+(-1+i)] in {0, -3}:
                         neighbors.append(newNode)
 
+
             return neighbors
         
         def _cost_function():
-            return random.randint(1, 5)
+            return 1
 
         def _calc_path(theStart, theGoal):
             thePath = [[],[]]
@@ -83,21 +84,21 @@ class RandomSearch():
                     theMap[next.pos[0]][next.pos[1]] = next.depth
 
                 self.searchedNodes += 1
-                self.queue.sort_add(next)
+                self.queue.add(next)
 
         return self.path
 
 
 
 if __name__ == "__main__":
-      
+
     # map_object, info = pp.generateMap2d([60,60])
     map_object = pp.generateMap2d([60, 60])
 
     start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0, 0)
     goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0, 0)
 
-    searcher = RandomSearch()
+    searcher = BFSearch()
     searcher.search(map_object, start, goal)
     print("Number of visited nodes: {}".format(searcher.searchedNodes))
     print("Length of path: {}".format(len(searcher.path[0])+len(searcher.path[1])))

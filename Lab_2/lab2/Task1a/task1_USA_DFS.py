@@ -34,6 +34,7 @@ class DFSearch():
             #                         #
             ###########################
 
+            # Gets the neighbors to current, if the node is not a wall (-1) or if the node has not been visited, and also a check if the value is in range
             for i in range(3):
                 if (xCords+(-1+i) not in {-1,xCords,len(theMap[0])}):
                     nodeCost = _cost_function()
@@ -49,16 +50,10 @@ class DFSearch():
                     if theMap[xCords][yCords+(-1+i)] in {0, -3}:
                         neighbors.append(newNode)
 
-            # ändra, ifall besökt noden, kolla om kostnaden är högre, så ersätt
-            # till A*
-            #         if theMap[xCords+(-1+i)][yCords] > nodeCost or theMap[xCords+(-1+i)][yCords] in {0, -3}:
-            #             neighbors.append(newNode) 
-
             return neighbors
         
         def _cost_function():
             return 1
-            #return abs(theGoal.pos[0] - theNodeCords[0]) + abs(theGoal.pos[1] - theNodeCords[1])
 
         def _calc_path(theStart, theGoal):
             thePath = [[],[]]
