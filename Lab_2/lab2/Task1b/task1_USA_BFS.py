@@ -12,7 +12,7 @@ cells with a value of 0: Free cell;
                      -3: Goal point;
 """
 
-class DFSearch():
+class BFSearch():
     def __init__(self):
         self.queue = PriorityQueue()
         self.path = [[],[]]
@@ -33,7 +33,7 @@ class DFSearch():
             #         [58,23]         #
             #                         #
             ###########################
-
+            
             # Gets the neighbors to current, if the node is not a wall (-1) or if the node has not been visited, and also a check if the value is in range
             for i in range(3):
                 if (xCords+(-1+i) not in {-1,xCords,len(theMap[0])}):
@@ -49,6 +49,7 @@ class DFSearch():
 
                     if theMap[xCords][yCords+(-1+i)] in {0, -3}:
                         neighbors.append(newNode)
+
 
             return neighbors
         
@@ -69,7 +70,7 @@ class DFSearch():
 
         # if there is still nodes to open
         while not self.queue.isEmpty():
-            current = self.queue.pop()
+            current = self.queue.remove()
 
             # check if the goal is reached
             if current.pos == goal.pos:
@@ -90,17 +91,15 @@ class DFSearch():
 
 
 if __name__ == "__main__":
-        
+
     # map_object, info = pp.generateMap2d([60,60])
-    #np.random.seed(2)
-    map_object = pp.generateMap2d([50, 50])
+    map_object = pp.generateMap2d([60, 60])
 
     start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0, 0)
     goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0, 0)
 
-    searcher = DFSearch()
+    searcher = BFSearch()
     searcher.search(map_object, start, goal)
     print("Number of visited nodes: {}".format(searcher.searchedNodes))
     print("Length of path: {}".format(len(searcher.path[0])+len(searcher.path[1])))
     pp.plotMap(map_object,searcher.path)
-    

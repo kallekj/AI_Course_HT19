@@ -13,8 +13,7 @@ from task1_ISA_Astar_Manhattan import AstarM
 
 
 
-# map_object, info = pp.generateMap2d([60,60])
-map_object = pp.generateMap2d([100, 100])
+map_object, info = pp.generateMap2d_obstacle([100, 100])
 map_object2 = np.copy(map_object)
 map_object3 = np.copy(map_object)
 
@@ -43,7 +42,3 @@ print("\nBFS")
 print("Number of visited nodes: {}".format(searcher3.searchedNodes))
 print("Length of path: {}".format(len(searcher3.path[0])+len(searcher3.path[1])))
 #pp.plotMap(map_object3,searcher3.path)
-
-
-
-#pp.plotMap(map_object2,searcher2.path)

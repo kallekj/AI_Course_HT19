@@ -13,7 +13,7 @@ cells with a value of 0: Free cell;
                      -3: Goal point;
 """
 
-class Astar():
+class AstarM():
     def __init__(self):
         self.queue = PriorityQueue()
         self.path = [[],[]]
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0, 0)
     goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0, 0)
 
-    searcher = Astar()
+    searcher = AstarM()
     searcher.search(map_object, start, goal)
     print("Number of visited nodes: {}".format(searcher.searchedNodes))
     print("Length of path: {}".format(len(searcher.path[0])+len(searcher.path[1])))

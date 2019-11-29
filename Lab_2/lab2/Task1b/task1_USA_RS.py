@@ -12,7 +12,7 @@ cells with a value of 0: Free cell;
                      -3: Goal point;
 """
 
-class DFSearch():
+class RandomSearch():
     def __init__(self):
         self.queue = PriorityQueue()
         self.path = [[],[]]
@@ -53,7 +53,7 @@ class DFSearch():
             return neighbors
         
         def _cost_function():
-            return 1
+            return random.randint(1, 5)
 
         def _calc_path(theStart, theGoal):
             thePath = [[],[]]
@@ -69,7 +69,7 @@ class DFSearch():
 
         # if there is still nodes to open
         while not self.queue.isEmpty():
-            current = self.queue.pop()
+            current = self.queue.remove()
 
             # check if the goal is reached
             if current.pos == goal.pos:
@@ -83,24 +83,22 @@ class DFSearch():
                     theMap[next.pos[0]][next.pos[1]] = next.depth
 
                 self.searchedNodes += 1
-                self.queue.add(next)
+                self.queue.sort_add(next)
 
         return self.path
 
 
 
 if __name__ == "__main__":
-        
+      
     # map_object, info = pp.generateMap2d([60,60])
-    #np.random.seed(2)
-    map_object = pp.generateMap2d([50, 50])
+    map_object = pp.generateMap2d([60, 60])
 
     start = Node([np.where(map_object == -2)[0][0], np.where(map_object == -2)[1][0]], None, 0, 0)
     goal = Node([np.where(map_object == -3)[0][0], np.where(map_object == -3)[1][0]], None, 0, 0)
 
-    searcher = DFSearch()
+    searcher = RandomSearch()
     searcher.search(map_object, start, goal)
     print("Number of visited nodes: {}".format(searcher.searchedNodes))
     print("Length of path: {}".format(len(searcher.path[0])+len(searcher.path[1])))
     pp.plotMap(map_object,searcher.path)
-    
