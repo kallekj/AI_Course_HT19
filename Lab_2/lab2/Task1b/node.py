@@ -10,4 +10,3 @@ class Node:
 
     def set_cost(self, newCost):
         self.cost = newCost
-

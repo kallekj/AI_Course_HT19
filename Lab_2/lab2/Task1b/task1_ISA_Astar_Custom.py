@@ -38,17 +38,17 @@ class AstarC():
             # Gets the neighbors to current, if the node is not a wall (-1) or if the node has not been visited, and also a check if the value is in range
             for i in range(3):
                 if (xCords+(-1+i) not in {-1,xCords,len(theMap[0])}):
-                    val = _weight_func([xCords+(-1+i), yCords], objInfo, theMap)
-                    nodeCost = _cost_function("euclidean", [xCords+(-1+i), yCords], goal) + current.depth+1
-                    newNode = Node([xCords+(-1+i), yCords], current, nodeCost, current.depth+1)
+                    newNode = Node([xCords+(-1+i), yCords], current, 0, current.depth+1)
+                    nodeCost = _cost_function("euclidean", newNode, goal, objInfo)
+                    newNode.set_cost(nodeCost)
 
                     if theMap[xCords+(-1+i)][yCords] > nodeCost or theMap[xCords+(-1+i)][yCords] in {0, -3}:
                         neighbors.append(newNode) 
 
                 if (yCords+(-1+i) not in {-1, yCords, len(theMap[1])}):
-                    val = _weight_func([xCords, yCords+(-1+i)], objInfo, theMap)
-                    nodeCost = _cost_function("euclidean", [xCords, yCords+(-1+i)], goal) + current.depth+1
-                    newNode = Node([xCords, yCords+(-1+i)], current, nodeCost, current.depth+1)
+                    newNode = Node([xCords, yCords+(-1+i)], current, 0, current.depth+1)
+                    nodeCost = _cost_function("euclidean", newNode, goal, objInfo)
+                    newNode.set_cost(nodeCost)
 
                     if theMap[xCords][yCords+(-1+i)] > nodeCost or theMap[xCords][yCords+(-1+i)] in {0, -3}:
                         neighbors.append(newNode) 
@@ -56,24 +56,74 @@ class AstarC():
 
             return neighbors
         
-        def _cost_function(func, theNodeCords, theGoal):
+        # Will increase the cost of a node if the node is within the "obstacle area" otherwise return 0
+        def _weight_func(theNode, objInfo):
+            obj_upper_y, obj_lower_y, obj_x = objInfo
+            weight = 0
+            if(theNode.pos[0] < obj_upper_y and theNode.pos[0] > obj_lower_y):
+                if(theNode.pos[1] < obj_x):
+                    weight = (obj_x - theNode.pos[1]) * 100
+            return weight
+
+        def _cost_function(func, theNode, theGoal, objInfo):
             if func == "manhattan":
-                return abs(theGoal.pos[0] - theNodeCords[0]) + abs(theGoal.pos[1] - theNodeCords[1])
+                if theNode.pos[1] > theNode.parent.pos[1]:
+                    extraCost = _weight_func(theNode, objInfo)
+                    return abs(theGoal.pos[0] - theNode.pos[0]) + abs(theGoal.pos[1] - theNode.pos[1]) + theNode.depth + extraCost
+                else:    
+                    return abs(theGoal.pos[0] - theNode.pos[0]) + abs(theGoal.pos[1] - theNode.pos[1]) + theNode.depth
             elif func == "euclidean":
-                return math.sqrt(pow(theGoal.pos[0] - theNodeCords[0],2) + pow(theGoal.pos[1] - theNodeCords[1], 2))
+                if theNode.pos[1] > theNode.parent.pos[1]:
+                    extraCost = _weight_func(theNode, objInfo)
+                    return math.sqrt(pow(theGoal.pos[0] - theNode.pos[0],2) + pow(theGoal.pos[1] - theNode.pos[1], 2)) + theNode.depth + extraCost
+                else:
+                    return math.sqrt(pow(theGoal.pos[0] - theNode.pos[0],2) + pow(theGoal.pos[1] - theNode.pos[1], 2)) + theNode.depth
             else:
                 return 1
 
-        def _weight_func(theNodeCords, objInfo, theMap):
-            obj_upper_y, obj_lower_y, obj_right_x = objInfo
-            if(theNodeCords[1] < obj_upper_y and theNodeCords[1] > obj_lower_y and theNodeCords[0] < obj_right_x):
-                normX = _norm(theNodeCords[0], 0, obj_right_x, 0, 100) # lower vals are more to left, higher vals are closer to object
-                normLowY = _norm(theNodeCords[1], obj_lower_y, len(theMap[1])/2, 0, 100)
-                normUpperY = _norm(theNodeCords[1], len(theMap[1])/2, obj_upper_y, 0, 100)
-            return 1
 
-        def _norm(value, in_min, in_max, out_min, out_max):
-            return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+        # def _weight_func(theNodeCords, objInfo, theMap):
+        #     obj_upper_y, obj_lower_y, obj_x = objInfo
+        #     weightY = 0
+        #     weightX = 0
+        #     # lagg till sa att bedommer vikten pa om malet ar pa ovre eller nedre halvan ocksa
+        #     if(theNodeCords[0] <= obj_upper_y and theNodeCords[0] >= obj_lower_y):
+        #         # normX = _norm(theNodeCords[1], 0, obj_right_x, 0, 100) # lower vals are more to left, higher vals are closer to object
+        #         # normLowY = _norm(theNodeCords[0], obj_lower_y, len(theMap[1])/2, 0, 100)
+        #         # normUpperY = _norm(theNodeCords[0], obj_upper_y, len(theMap[1])/2, 0, 100)
+        #         if theNodeCords[1] < obj_x:
+        #             weightX = _norm(theNodeCords[1], 0, obj_x) * 10
+        #             if(theNodeCords[0] < len(theMap[0])/2):
+        #                 weightY = _norm(theNodeCords[0], obj_lower_y, len(theMap[1])/2)
+        #             else:
+        #                 weightY = _norm(theNodeCords[0], len(theMap[1])/2, obj_upper_y)
+        #     return (weightX + weightY) * 10
+
+        
+        # def _weight_func(theNodeCords, objInfo, theMap, theGoal):
+        #     obj_upper_y, obj_lower_y, obj_x = objInfo
+        #     weightY = 0
+        #     weightX = 0
+        #     # lagg till sa att bedommer vikten pa om malet ar pa ovre eller nedre halvan ocksa
+        #     if(theNodeCords[0] <= obj_upper_y and theNodeCords[0] >= obj_lower_y and theNodeCords[1] < obj_x):
+        #         # normX = _norm(theNodeCords[1], 0, obj_right_x, 0, 100) # lower vals are more to left, higher vals are closer to object
+        #         # normLowY = _norm(theNodeCords[0], obj_lower_y, len(theMap[1])/2, 0, 100)
+        #         # normUpperY = _norm(theNodeCords[0], obj_upper_y, len(theMap[1])/2, 0, 100)
+        #         weightX = _norm(theNodeCords[1], 0, obj_x) * 10
+        #         if(theNodeCords[0] < len(theMap[0])/2 and theGoal.pos[0] < len(theMap[0])/2):
+        #             weightY = _norm(theNodeCords[0], obj_lower_y, len(theMap[1])/2)
+        #         else:
+        #             weightY = _norm(theNodeCords[0], len(theMap[1])/2, obj_upper_y)
+    
+    
+        #     return (weightX + weightY) * 100
+
+
+        # def _norm(value, in_min, in_max, out_min, out_max):
+        #     return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+
+        def _norm(value, in_min, in_max):
+            return (value - in_min) / (in_max - in_min) 
 
 
         def _calc_path(theStart, theGoal):
