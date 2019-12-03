@@ -29,13 +29,13 @@ class Poker():
         self.end_state = None 
 
     def play_poker(self):
-
+        
         while self.running:
-
             if self.round_init:
                 self.round_init = False
                 states_ = get_next_states(self.init_state)
-                self.state_queue.extend(states_[:])
+                self.state_queue.extend(states_)
+                self.game_agent.node_count += len(self.state_queue)
                 
             else:
 
@@ -47,24 +47,29 @@ class Poker():
                     
                     if self.game_agent.end_of_game(_state_, self.max_hands):
                         self.end_state = _state_
+                        self.game_agent.end_state = _state_
                         self.running = False
                     
                     self.game_agent.node_count += 1
 
+
+
+    def print_game_info(self):
         """
         Printing game flow & info
         """
 
-        nn_level = 0
+        depth = 0
         current_state = self.end_state
         print('------------ print game info ---------------')
-        print('nn_states_total', len(self.state_queue))
+        print('State queue length', len(self.state_queue))
 
         while current_state.parent_state != None:
-            nn_level += 1
-            print(nn_level)
-            current_state.print_state_info()
+            depth += 1
             current_state = current_state.parent_state
 
-        print(nn_level)
-
+        print("****** {} Performance *******".format(self.game_agent.name))
+        print("Current stack: {}   Node Count: {}   Depth: {}   Number of hands: {}".format(self.end_state.agent.stack, self.game_agent.node_count, depth, self.end_state.nn_current_hand))
+        print("")
+        print("****** Opponent ******")
+        print("Current stack: {}".format(self.end_state.opponent.stack))
