@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
+\usepackage{float}
 \usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry} 
 
 
@@ -31,9 +32,21 @@ The random agent works by simply adding a random weight to the node between 1 an
 Breadth First and Depth first are very similar in how they are implemented, it's simply a difference in how one removes a node from the list. In Depth first, the last element in
 the list is removed first whereas in Breadth first you remove the first element.
 \subsubsection{Performance}
-On a set of 100 runs this is the mean for each algorithm.
+On a set of 100 runs on a 100 by 100 map, this is the mean for each algorithm.
+\begin{figure}[h]
+    \center
+    \begin{tabular}{llllr}
+        \toprule
+        {Mean of 100 runs} & {Breadth First Search} & {Depth First Search} & {Random Search} \\
+        \midrule
+        nodes      &  4725.61 & 5857.09 & 5445.28\\
+        pathLength &   144.84 & 4413.16 & 292.60 \\
+        \bottomrule
+    \end{tabular}
+\end{figure}
 
-
+Out of the three Unified Search Algorithms we can se that out of 100 runs, the Breadth First Search algorithm performs best, though none of the algorithms are particularly good 
+when it come to the amount of expanded nodes.
 \subsection{a) Informed Search Algorithms}
 
 \subsection{b) USA vs ISA on map with obstacle}
