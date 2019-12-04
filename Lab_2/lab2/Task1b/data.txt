@@ -1,0 +1,69 @@
+       BFS Mean
+nodes         6864.73
+pathLength     318.80
+dtype: float64
+
+       A* Manhattan Mean
+nodes         2591.90
+pathLength     326.72
+dtype: float64
+
+       A* Euclidean Mean
+nodes         4693.62
+pathLength     318.80
+dtype: float64
+
+       A* Custom Mean
+nodes         2591.90
+pathLength     326.72
+dtype: float64
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  6864.73 \\
+pathLength &   318.80 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  3905.48 \\
+pathLength &   322.76 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  4693.62 \\
+pathLength &   318.80 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  2591.90 \\
+pathLength &   326.72 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  3096.58 \\
+pathLength &   302.78 \\
+\bottomrule
+\end{tabular}
+
