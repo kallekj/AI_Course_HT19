@@ -14,7 +14,7 @@ class RandomPlayer(PokerPlayer):
         
         #if state.phase == 'SHOWDOWN' and ((state.agent.stack >= self.init_stack + 100) or state.nn_current_hand <= max_hands or self.node_count > 10000):
         
-        if state.phase == 'SHOWDOWN' and (state.agent.stack >= self.init_stack + 100 and state.nn_current_hand <= max_hands or self.node_count > 10000):
+        if state.phase == 'SHOWDOWN' and ((state.agent.stack >= self.init_stack + 100 and state.nn_current_hand <= max_hands) or self.node_count > 10000):
             return True
         else:
             return False
