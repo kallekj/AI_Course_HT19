@@ -18,14 +18,14 @@ def main():
     Random_Data=[]
     Greedy_Data=[]
 
-    for i in range(50):
+    for i in range(100):
         print(i)
         BFSAgent = BFSPlayer(300)
         RandomAgent = RandomPlayer(300)
         GreedyAgent = GreedyPlayer(300)
         BFS = Poker(BFSAgent,4)
         Random = Poker(RandomAgent,4)
-        Greedy = Poker(GreedyAgent, 4)    
+        Greedy = Poker(GreedyAgent, 4)
 
         BFS.play_poker()
         BFS_Data.append(BFS.get_game_info())

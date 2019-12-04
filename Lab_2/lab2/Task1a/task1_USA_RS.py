@@ -53,7 +53,7 @@ class RandomSearch():
             return neighbors
         
         def _cost_function():
-            return random.randint(1, 5)
+            return random.randint(1, 10)
 
         def _calc_path(theStart, theGoal):
             thePath = [[],[]]

@@ -19,53 +19,59 @@
 
 \maketitle
 
-\section{Task 1}
-\subsection{a) To implement a random agent}
+\section{Task 1 Path Planning}
+\subsection{a) Unified Search Algorithms}
+In this task we were supposed to implement three different types of search algorithms.
+\begin{enumerate}
+    \item Random Agent
+    \item Breadth First Agent
+    \item Depth First Agent 
+\end{enumerate}
+The random agent works by simply adding a random weight to the node between 1 and 10, then sort the list of all nodes by the weight and remove the first node in the list.\\
+Breadth First and Depth first are very similar in how they are implemented, it's simply a difference in how one removes a node from the list. In Depth first, the last element in
+the list is removed first whereas in Breadth first you remove the first element.
+\subsubsection{Performance}
+On a set of 100 runs this is the mean for each algorithm.
 
-\subsection{b) To implement a fixed agent}
 
-\subsection{c) To implement a simple reflex agent}
+\subsection{a) Informed Search Algorithms}
 
-\subsection{d) To implement an agent with a memory}
+\subsection{b) USA vs ISA on map with obstacle}
+
+\subsection{b) A* with heuristic}
 
 \subsection{What I learned in Task 1}
 
 \newpage
-\section{Task 2}
+\section{Task 2 Poker Bidding}
 
-\subsection{a) Random agent}
+\subsection{a) Random Agent}
+\begin{tabular}{lr}
+    \toprule
+    {Random Search} &        \\
+    \midrule
+    stack         &   306.50 \\
+    nNodes        &  9102.80 \\
+    depth         &    13.24 \\
+    nHands        &     7.22 \\
+    opponentStack &   293.50 \\
+    \bottomrule
+\end{tabular}
 
-\subsection{b) Fixed agent}
+\subsection{b) Breadth First Search Agent}
+\begin{tabular}{lr}
+    \toprule
+    {Breadth First Search} &   \\
+    \midrule
+    stack         &     400.30 \\
+    nNodes        &  135871.28 \\
+    depth         &      10.36 \\
+    nHands        &       2.30 \\
+    opponentStack &     199.70 \\
+    \bottomrule
+\end{tabular}
 
-\subsection{c) Build you own environment}
-
-    \begin{tabular}{lr}
-        \toprule
-        {Breadth First Search} &   \\
-        \midrule
-        stack         &     400.30 \\
-        nNodes        &  135871.28 \\
-        depth         &      10.36 \\
-        nHands        &       2.30 \\
-        opponentStack &     199.70 \\
-        \bottomrule
-    \end{tabular}
-
-    test test
-        
-    \begin{tabular}{lr}
-        \toprule
-        {Random Search} &        \\
-        \midrule
-        stack         &   306.50 \\
-        nNodes        &  9102.80 \\
-        depth         &    13.24 \\
-        nHands        &     7.22 \\
-        opponentStack &   293.50 \\
-        \bottomrule
-    \end{tabular}
-        
-    test test
+\subsection{c) Greedy Agent}
 
     \begin{tabular}{lr}
         \toprule
@@ -79,5 +85,6 @@
         \bottomrule
     \end{tabular}
 
+\subsection{What I learned in Task 2}
 
 \end{document}
