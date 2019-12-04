@@ -1,0 +1,29 @@
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  4725.61 \\
+pathLength &   144.84 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  5445.28 \\
+pathLength &   292.60 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  5857.09 \\
+pathLength &  4413.16 \\
+\bottomrule
+\end{tabular}
+

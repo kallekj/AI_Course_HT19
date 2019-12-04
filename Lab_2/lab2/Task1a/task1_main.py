@@ -18,7 +18,7 @@ BFS_Data=[]
 Random_Data=[]
 DFS_Data=[]
 
-for i in range(1):
+for i in range(100):
     print(i)
     BFSAgent = BFSearch()
     RandomAgent = RandomSearch()
@@ -43,15 +43,15 @@ BFS_DF = pd.DataFrame(BFS_Data)
 BFS_Mean = BFS_DF.mean(axis=0)
 Random_DF = pd.DataFrame(Random_Data)
 Random_Mean = Random_DF.mean(axis=0)
-Greedy_DF = pd.DataFrame(DFS_Data)
-Greedy_Mean = Greedy_DF.mean(axis=0)
+DFS_DF = pd.DataFrame(DFS_Data)
+DFS_Mean = DFS_DF.mean(axis=0)
 
 print("\n       BFS Mean")
 print(BFS_Mean)
 print("\n       Random Mean")
 print(Random_Mean)
-print("\n       Greedy Mean")
-print(Greedy_Mean)
+print("\n       DFS Mean")
+print(DFS_Mean)
 
 
 
@@ -60,7 +60,7 @@ print(BFS_Mean.to_latex())
 print("")
 print(Random_Mean.to_latex())
 print("")
-print(Greedy_Mean.to_latex())
+print(DFS_Mean.to_latex())
 
 
 
