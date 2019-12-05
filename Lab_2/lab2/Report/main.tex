@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
+\usepackage{float}
 \usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry} 
 
 
@@ -44,47 +45,36 @@ On a set of 100 runs this is the mean for each algorithm.
 
 \newpage
 \section{Task 2 Poker Bidding}
-
-\subsection{a) Random Agent}
-\begin{tabular}{lr}
-    \toprule
-    {Random Search} &        \\
-    \midrule
-    stack         &   306.50 \\
-    nNodes        &  9102.80 \\
-    depth         &    13.24 \\
-    nHands        &     7.22 \\
-    opponentStack &   293.50 \\
-    \bottomrule
-\end{tabular}
-
-\subsection{b) Breadth First Search Agent}
-\begin{tabular}{lr}
-    \toprule
-    {Breadth First Search} &   \\
-    \midrule
-    stack         &     400.30 \\
-    nNodes        &  135871.28 \\
-    depth         &      10.36 \\
-    nHands        &       2.30 \\
-    opponentStack &     199.70 \\
-    \bottomrule
-\end{tabular}
-
-\subsection{c) Greedy Agent}
-
-    \begin{tabular}{lr}
+In this task we had to implement three different kinds of search algorithms to beat
+an opponent player in a game of poker. The implemented algorithms were a Random-, Breadth First-
+and a Greedy Search algorithm. The key used when sorting the list of states for the Greedy Search algorithm
+were the \texttt{nn\_current\_hand} which is a measure of how many hands the dealer have handed out in this state.
+I use this key since we sought to find the state were the agent win more than 100 coins from the opponent in the least
+amount of hands.
+\subsection{The implemented agents}
+\subsubsection{Performance}
+\begin{figure}[H]
+    \center
+    \begin{tabular}{llllr}
         \toprule
-        {Greedy Search} &        \\
+        {100 Games} & {Random Search} & {Breadth First Search} & {Greedy Search}  \\
         \midrule
-        stack         &   402.10 \\
-        nNodes        &  4209.28 \\
-        depth         &    10.64 \\
-        nHands        &     2.10 \\
-        opponentStack &   197.90 \\
+        stack         &   306.50 &     400.30 &   402.10 \\ 
+        nNodes        &  9102.80 &  135871.28 &  4209.28 \\
+        depth         &    13.24 &      10.36 &    10.64 \\
+        nHands        &     7.22 &       2.30 &     2.10 \\
+        opponentStack &   293.50 &     199.70 &   197.90 \\
         \bottomrule
     \end{tabular}
+       
+\end{figure}
+After playing 100 games of poker we can see that the Greedy Search algorithm performs the best
+out of the three algorithms, with fewest number of expanded nodes. It also wins over the opponent
+for most of the times with only two hands. The search depth on the other hand is on average a bit
+larger compared to the BFS algorithm. Random search performs the worst out of all three, not only
+does it expand many nodes, it also doesn't win very much.
 
 \subsection{What I learned in Task 2}
-
+In this task I increased my understanding of reading and understanding code someone else had written,
+and also the importance of sorting your data on the correct key to increase the performance of a search algorithm.
 \end{document}
