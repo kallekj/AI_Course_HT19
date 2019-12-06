@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1575539785 "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.tex" "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.pdf" "main" 1575539785
-  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.aux" 1575539785 1252 454794ad93b1b1d0b6cdecaeaddaa13d ""
-  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.tex" 1575539784 3291 17dc8da3990a07eefed4cc0b0125719f ""
+["pdflatex"] 1575627231 "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.tex" "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.pdf" "main" 1575627231
+  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.aux" 1575627231 1252 454794ad93b1b1d0b6cdecaeaddaa13d ""
+  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.tex" 1575627230 3877 afc2ef321dff6b3648b80edf4555b5a1 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -36,11 +36,11 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1570096904 4655696 1f4362f1151bda5cf6a8ef1247783eba ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1570096960 4264936 35431b073850e9331d441584f2584fec ""
   "/usr/local/texlive/2019/texmf.cnf" 1570096896 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "main.aux" 1575539785 1252 454794ad93b1b1d0b6cdecaeaddaa13d "pdflatex"
-  "main.tex" 1575539784 3291 17dc8da3990a07eefed4cc0b0125719f ""
+  "main.aux" 1575627231 1252 454794ad93b1b1d0b6cdecaeaddaa13d "pdflatex"
+  "main.tex" 1575627230 3877 afc2ef321dff6b3648b80edf4555b5a1 ""
   (generated)
+  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.pdf"
+  "main.aux"
   "main.pdf"
   "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.log"
-  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_2/lab2/Report/main.pdf"
   "main.log"
-  "main.aux"
