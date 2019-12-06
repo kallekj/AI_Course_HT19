@@ -22,7 +22,7 @@
 
 \section{Task 1 Path Planning}
 \subsection{a) Unified Search Algorithms}
-In this task we were supposed to implement three different types of search algorithms.
+In this task we were supposed to implement three different types of path finding search algorithms.
 \begin{enumerate}
     \item Random Agent
     \item Breadth First Agent
@@ -48,12 +48,50 @@ On a set of 100 runs on a 100 by 100 map, this is the mean for each algorithm.
 Out of the three Unified Search Algorithms we can se that out of 100 runs, the Breadth First Search algorithm performs best, though none of the algorithms are particularly good 
 when it come to the amount of expanded nodes.
 \subsection{a) Informed Search Algorithms}
-
+Greedy Search and A* were also implemented, with two different algorithm to calculate the weight of each node.
+Manhattan distance where each node weight $W_n$ is calculated by subtracting current node position $(X_n, Y_n)$ from the goal $(X_g, Y_g)$.
+\begin{equation}
+    D_n = |X_g - X_n| + |Y_g - Y_n|
+\end{equation}
+Euclidean distance where the distance to the goal is a scalar.
+\begin{equation}
+   D_n = \sqrt{(X_g - X_n)^2 + (Y_g - Y_n)^2}
+\end{equation}
+In cases where you only can travel in a grid pattern (just as in this case), Manhattan distance should perform best.
+Since in this case you cant travel diagonal which is a pre-condition to get best performance out of the Euclidean distance formula.  
+Both lists of nodes in Greedy and A* were sorted one the key \texttt{node.cost}. The difference between the Greedy and A*
+algorithm is that A* also increase it's weight in each node by it's search depth.
 \subsection{b) USA vs ISA on map with obstacle}
-
+\begin{figure}[H]
+    \center
+    \begin{tabular}{llllllr}
+        \toprule
+        {Mean of 100 runs} & {BFS} & {A* Manhattan} & {A* Euclidean} & {Greedy Manh.} & {Greedy Eucl.} \\
+        \midrule
+        nodes      &  6864.73 &  3905.48 &  4693.62 \\
+        pathLength &   318.80 &   322.76 &   318.80 \\
+        \bottomrule  
+    \end{tabular}
+\end{figure}
+Here we can see som interesting statistics, the A* Euclidean does find the shortest path just as the BFS algorithm, 
+though it expands more nodes. The A*
 \subsection{b) A* with heuristic}
-
+\begin{figure}[H]
+    \center
+    \begin{tabular}{lllr}
+        \toprule
+        {Mean of 100 runs} & {A* Custom Manhattan} & {A* Custom Euclidean} \\
+        \midrule
+        nodes      &  2591.90 &  3096.58 \\
+        pathLength &   326.72 &   302.78 \\
+        \bottomrule  
+    \end{tabular}
+\end{figure}
+This custom algorithm has a heuristic where it increases the weight of a node if it's close to the left side of 
+the obstacle, this decreases the amount of expanded nodes, but it doesn't always find the most optimal path.
 \subsection{What I learned in Task 1}
+I learned how different search algorithms works and how much performance can be gained by choosing the
+correct algorithm.
 
 \newpage
 \section{Task 2 Poker Bidding}
@@ -69,7 +107,7 @@ amount of hands.
     \center
     \begin{tabular}{llllr}
         \toprule
-        {100 Games} & {Random Search} & {Breadth First Search} & {Greedy Search}  \\
+        {Mean of 100 Games} & {Random Search} & {Breadth First Search} & {Greedy Search}  \\
         \midrule
         stack         &   306.50 &     400.30 &   402.10 \\ 
         nNodes        &  9102.80 &  135871.28 &  4209.28 \\
