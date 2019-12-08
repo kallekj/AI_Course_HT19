@@ -67,3 +67,63 @@ pathLength &   302.78 \\
 \bottomrule
 \end{tabular}
 
+===================== new data ==============================
+
+       BFS Mean
+nodes         6685.87
+pathLength     314.22
+dtype: float64
+
+       A* Manhattan Mean
+nodes         3318.54
+pathLength     316.14
+dtype: float64
+
+       A* Euclidean Mean
+nodes         4601.22
+pathLength     314.22
+dtype: float64
+
+       A* Custom Mean
+nodes         3318.54
+pathLength     316.14
+dtype: float64
+
+       Greedy Manhattan Mean
+nodes         2215.64
+pathLength     356.02
+dtype: float64
+
+       Greedy Euclidean Mean
+nodes         2217.56
+pathLength     414.46
+dtype: float64
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  6685.87 \\
+pathLength &   314.22 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  3831.25 \\
+pathLength &   317.66 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lr}
+\toprule
+{} &        0 \\
+\midrule
+nodes      &  4601.22 \\
+pathLength &   314.22 \\
+\bottomrule
+\end{tabular}
