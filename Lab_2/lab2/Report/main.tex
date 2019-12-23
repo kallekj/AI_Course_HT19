@@ -68,13 +68,14 @@ algorithm is that A* also increase it's weight in each node by it's search depth
         \toprule
         {Mean of 100 runs} & {BFS} & {A* Manhattan} & {A* Euclidean} & {Greedy Manh.} & {Greedy Eucl.} \\
         \midrule
-        nodes      &  6864.73 &  3905.48 &  4693.62 \\
-        pathLength &   318.80 &   322.76 &   318.80 \\
+        nodes      &  6685.87 &  3318.54 &  4601.22 & 2215.64 & 2217.56 \\
+        pathLength &   314.22 &   316.14 &   314.22 & 356.02 & 414.46 \\
         \bottomrule  
     \end{tabular}
 \end{figure}
 Here we can see som interesting statistics, the A* Euclidean does find the shortest path just as the BFS algorithm, 
-though it expands more nodes. The A*
+though it expands more nodes. The A* Manhattan on the other hand does expand less nodes but doesn't always find the 
+shortest path. The Greedy Search algorithm expands the less amount of nodes, but the path is not always the most optimal.
 \subsection{b) A* with heuristic}
 \begin{figure}[H]
     \center
