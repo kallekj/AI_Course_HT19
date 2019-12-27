@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry} 
+
+
+\title{AI Lab 2}
+\author{Karl-Johan Djervbrant}
+
+% Hide section numbering
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\begin{document}
+
+    \maketitle
+
+    \section{Task 1 Path Planning}
+    \begin{tabular}{cccc}
+      \toprule
+      Classifier &  Neighbors & Distance Measure &           Score \\
+      \midrule
+      0  &        KNN &          2 &              Manhattan &  0.68 (+/-0.45) \\
+      1  &        KNN &          3 &              Manhattan &  0.73 (+/-0.45) \\
+      2  &        KNN &          4 &              Manhattan &  0.73 (+/-0.47) \\
+      3  &        KNN &          5 &              Manhattan &  0.73 (+/-0.45) \\
+      4  &        KNN &          6 &              Manhattan &  0.74 (+/-0.45) \\
+      5  &        KNN &          7 &              Manhattan &  0.74 (+/-0.45) \\
+      6  &        KNN &          8 &              Manhattan &  0.71 (+/-0.47) \\
+      7  &        KNN &          9 &              Manhattan &  0.71 (+/-0.47) \\
+      8  &        KNN &         10 &              Manhattan &  0.70 (+/-0.48) \\
+      9  &        KNN &         11 &              Manhattan &  0.73 (+/-0.48) \\
+      10 &        KNN &         12 &              Manhattan &  0.71 (+/-0.47) \\
+      11 &        KNN &          2 &              Euclidean &  0.69 (+/-0.44) \\
+      12 &        KNN &          3 &              Euclidean &  0.70 (+/-0.45) \\
+      13 &        KNN &          4 &              Euclidean &  0.70 (+/-0.44) \\
+      14 &        KNN &          5 &              Euclidean &  0.71 (+/-0.48) \\
+      15 &        KNN &          6 &              Euclidean &  0.69 (+/-0.49) \\
+      16 &        KNN &          7 &              Euclidean &  0.70 (+/-0.50) \\
+      17 &        KNN &          8 &              Euclidean &  0.68 (+/-0.48) \\
+      18 &        KNN &          9 &              Euclidean &  0.68 (+/-0.48) \\
+      19 &        KNN &         10 &              Euclidean &  0.68 (+/-0.49) \\
+      20 &        KNN &         11 &              Euclidean &  0.67 (+/-0.48) \\
+      21 &        KNN &         12 &              Euclidean &  0.68 (+/-0.49) \\
+      22 &        KNN &          2 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.69 (+/-0.45) \\
+      23 &        KNN &          3 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.68 (+/-0.47) \\
+      24 &        KNN &          4 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.69 (+/-0.45) \\
+      25 &        KNN &          5 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.70 (+/-0.49) \\
+      26 &        KNN &          6 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.69 (+/-0.47) \\
+      27 &        KNN &          7 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.70 (+/-0.47) \\
+      28 &        KNN &          8 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.67 (+/-0.48) \\
+      29 &        KNN &          9 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.67 (+/-0.48) \\
+      30 &        KNN &         10 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.68 (+/-0.48) \\
+      31 &        KNN &         11 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.67 (+/-0.47) \\
+      32 &        KNN &         12 &  Minkowski p=\$2\textasciicircum \{1.5\}\$ &  0.68 (+/-0.47) \\
+      \bottomrule
+      \end{tabular}        
+\end{document}
