@@ -7,6 +7,7 @@ import warnings
 import math
 import copy
 
+
 class kList:
     def __init__(self, k):
         self.maxLength = k
@@ -18,8 +19,9 @@ class kList:
         if len(self.theList) > self.maxLength:
             self.theList.pop()
 
+
 # This is the new and improved one, takes about 5sec on this dataset. It only appends the calculated distance if it's shorter than the max(distance) in the list.
-class KNN_fast:
+class KNN_Regressor_fast:
     def __init__(self, k=5, distanceFormula="euclidean"):
         self.k = k
         self.distanceFormula = distanceFormula
@@ -41,16 +43,16 @@ class KNN_fast:
                 dist = _euclidean(feature, predict)
             else:
                 dist = _manhattan(feature, predict)
-            if dist < max(dists.theList)[0]:
+            if dist <= max(dists.theList)[0]:
                 dists.push([dist, Y_train[i]])
 
-        votes = [neighbors[1] for neighbors in dists.theList[:self.k]]
-        nVotes = Counter(votes).most_common(1)
-        return nVotes
+        kNeighborsClass = [neighbors[1] for neighbors in dists.theList[:self.k]]
+        predictedClass = sum(kNeighborsClass)/len(kNeighborsClass)
+        return predictedClass
 
 
 # My first implementation of KNN, this one is really slow, takes approx 40sec on this dataset.
-class KNN:
+class KNN_Regressor:
     def __init__(self, k=5, distanceFormula="euclidean"):
         self.k = k
         self.distanceFormula = distanceFormula
@@ -75,14 +77,8 @@ class KNN:
             dists.append([dist, Y_train[i]])
             dists.sort(key=itemgetter(0))
 
-
-        votes = [neighbors[1] for neighbors in dists[:self.k]]
-        nVotes = Counter(votes).most_common(1)
-        return nVotes
-
+        kNeighborsClass = [neighbors[1] for neighbors in dists[:self.k]]
+        predictedClass = sum(kNeighborsClass)/len(kNeighborsClass)
+        return predictedClass
 
 
-
-
-    
-    

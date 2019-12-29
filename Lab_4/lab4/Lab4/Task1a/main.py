@@ -17,33 +17,42 @@ print('Length of Train Data:', len(X_train))
 print('Length of Test Data:', len(X_test))
 print ('***************************************')
 
+results = {"Own KNN_Regressor_fast":{}, "Own KNN_Regressor":{}, "Sklearn":{}}
+k = 5
+algorithm = "euclidean"
+p=2 #p=1 manhattan, p=2 euclidean
+
 correct = 0
-classifier = KNN(k=5, distanceFormula="euclidean")
+print("Now running KNN_Regressor()")
 start = time.time()
+classifier = KNN(k=k, distanceFormula=algorithm)
 for i, predict in enumerate(X_test):
     result = classifier.calc(X_train, Y_train, predict)
     if result[0][0] == Y_test[i]:
         correct += 1
-
-print("Accuracy of own KNN: {} and took {}s to calculate, correct: {}".format(correct/len(Y_test), time.time()-start, correct))
+computeTime = time.time() - start
+results.get("Own KNN_Regressor").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
 
 correct = 0
-classifier2 = KNN_fast(k=5, distanceFormula="euclidean")
+print("Now running KNN_Regressor_fast()")
+classifier2 = KNN_fast(k=k, distanceFormula="euclidean")
 start = time.time()
 for i, predict in enumerate(X_test):
     result = classifier2.calc(X_train, Y_train, predict)
     if result[0][0] == Y_test[i]:
         correct += 1
+computeTime = time.time() - start
+results.get("Own KNN_Regressor_fast").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
 
-print("Accuracy of own KNN_fast: {} and took {}s to calculate, correct: {}".format(correct/len(Y_test), time.time()-start, correct))
 
-
-
-classifier3 = KNeighborsClassifier(n_neighbors = 5)
+print("Now running KNeighborsClassifier()")
+classifier3 = KNeighborsClassifier(n_neighbors = k, p=p)
 start = time.time()
 classifier3.fit(X_train, Y_train)
 y_pred = classifier3.predict(X_test)
+computeTime = time.time() - start
 result3 = accuracy_score(Y_test,y_pred)
 
-print("Accuracy of sklearn KNN: {} and took {}s to calculate".format(result3, time.time()-start))
+results.get("Sklearn").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
 
+print("\n",pd.DataFrame(results).transpose())
