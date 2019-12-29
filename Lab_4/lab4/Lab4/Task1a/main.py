@@ -55,4 +55,6 @@ result3 = accuracy_score(Y_test,y_pred)
 
 results.get("Sklearn").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
 
-print("\n",pd.DataFrame(results).transpose())
+df = pd.DataFrame(results).transpose()
+print("\n\n\n", df.to_latex())
+print("\n",df)
