@@ -20,44 +20,131 @@
 
     \maketitle
 
-    \section{Task 1 Path Planning}
-    \begin{tabular}{cccc}
-      \toprule
-      Classifier &  Neighbors & Distance Measure &           Score \\
-      \midrule
-      KNN &          2 &              Manhattan &  0.68 (+/-0.45) \\
-      KNN &          3 &              Manhattan &  0.73 (+/-0.45) \\
-      KNN &          4 &              Manhattan &  0.73 (+/-0.47) \\
-      KNN &          5 &              Manhattan &  0.73 (+/-0.45) \\
-      KNN &          6 &              Manhattan &  0.74 (+/-0.45) \\
-      KNN &          7 &              Manhattan &  0.74 (+/-0.45) \\
-      KNN &          8 &              Manhattan &  0.71 (+/-0.47) \\
-      KNN &          9 &              Manhattan &  0.71 (+/-0.47) \\
-      KNN &         10 &              Manhattan &  0.70 (+/-0.48) \\
-      KNN &         11 &              Manhattan &  0.73 (+/-0.48) \\
-      KNN &         12 &              Manhattan &  0.71 (+/-0.47) \\
-      KNN &          2 &              Euclidean &  0.69 (+/-0.44) \\
-      KNN &          3 &              Euclidean &  0.70 (+/-0.45) \\
-      KNN &          4 &              Euclidean &  0.70 (+/-0.44) \\
-      KNN &          5 &              Euclidean &  0.71 (+/-0.48) \\
-      KNN &          6 &              Euclidean &  0.69 (+/-0.49) \\
-      KNN &          7 &              Euclidean &  0.70 (+/-0.50) \\
-      KNN &          8 &              Euclidean &  0.68 (+/-0.48) \\
-      KNN &          9 &              Euclidean &  0.68 (+/-0.48) \\
-      KNN &         10 &              Euclidean &  0.68 (+/-0.49) \\
-      KNN &         11 &              Euclidean &  0.67 (+/-0.48) \\
-      KNN &         12 &              Euclidean &  0.68 (+/-0.49) \\
-      KNN &          2 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.45) \\
-      KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.47) \\
-      KNN &          4 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.45) \\
-      KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.49) \\
-      KNN &          6 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.47) \\
-      KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.47) \\
-      KNN &          8 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.48) \\
-      KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.48) \\
-      KNN &         10 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.48) \\
-      KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.47) \\
-      KNN &         12 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.47) \\
-      \bottomrule
-      \end{tabular}        
+    \section{Task 1}
+      \subsection{a)}
+        \begin{tabular}{lcccc}
+          \toprule
+          {} & Algorithm & Accuracy (\%) & Correct &   Time (s) \\
+          \midrule
+          Own KNN\_Regressor\_fast &  euclidean &       0.8525 &     341 &    4.76143 \\
+          Own KNN\_Regressor      &  euclidean &       0.8525 &     341 &    54.7676 \\
+          Sklearn                &  euclidean &       0.8525 &     341 &  0.0145493 \\
+          
+          \bottomrule
+        \end{tabular}
+
+      \subsection{b)}
+        \begin{tabular}{lrr}
+          \toprule
+          {} &   Score &  Time (s) \\
+          \midrule
+          SVC           &  0.9475 &  0.230703 \\
+          Decision Tree &  0.8800 &  0.005497 \\
+          Random Forest &  0.9100 &  0.013979 \\
+          \bottomrule
+        \end{tabular}
+
+      \subsection{c)}
+        \begin{tabular}{cccc}
+          \toprule
+          Classifier &  Neighbors & Distance Measure &           Score \\
+          \midrule
+          KNN &          2 &              Manhattan &  0.68 (+/-0.45) \\
+          KNN &          3 &              Manhattan &  0.73 (+/-0.45) \\
+          KNN &          4 &              Manhattan &  0.73 (+/-0.47) \\
+          KNN &          5 &              Manhattan &  0.73 (+/-0.45) \\
+          KNN &          6 &              Manhattan &  0.74 (+/-0.45) \\
+          KNN &          7 &              Manhattan &  0.74 (+/-0.45) \\
+          KNN &          8 &              Manhattan &  0.71 (+/-0.47) \\
+          KNN &          9 &              Manhattan &  0.71 (+/-0.47) \\
+          KNN &         10 &              Manhattan &  0.70 (+/-0.48) \\
+          KNN &         11 &              Manhattan &  0.73 (+/-0.48) \\
+          KNN &         12 &              Manhattan &  0.71 (+/-0.47) \\
+          KNN &          2 &              Euclidean &  0.69 (+/-0.44) \\
+          KNN &          3 &              Euclidean &  0.70 (+/-0.45) \\
+          KNN &          4 &              Euclidean &  0.70 (+/-0.44) \\
+          KNN &          5 &              Euclidean &  0.71 (+/-0.48) \\
+          KNN &          6 &              Euclidean &  0.69 (+/-0.49) \\
+          KNN &          7 &              Euclidean &  0.70 (+/-0.50) \\
+          KNN &          8 &              Euclidean &  0.68 (+/-0.48) \\
+          KNN &          9 &              Euclidean &  0.68 (+/-0.48) \\
+          KNN &         10 &              Euclidean &  0.68 (+/-0.49) \\
+          KNN &         11 &              Euclidean &  0.67 (+/-0.48) \\
+          KNN &         12 &              Euclidean &  0.68 (+/-0.49) \\
+          KNN &          2 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.45) \\
+          KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.47) \\
+          KNN &          4 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.45) \\
+          KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.49) \\
+          KNN &          6 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.47) \\
+          KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.47) \\
+          KNN &          8 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.48) \\
+          KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.48) \\
+          KNN &         10 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.48) \\
+          KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.47) \\
+          KNN &         12 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.47) \\
+          \bottomrule
+        \end{tabular}
+
+        \subsection{e)}
+          \begin{tabular}{llll}
+            \toprule
+            {} &  Algorithm &     Score &    Time (s) \\
+            \midrule
+            Own KNN\_Regressor\_fast &  euclidean &  0.753293 &     4.68343 \\
+            Own KNN\_Regressor      &  euclidean &  0.753293 &     41.3229 \\
+            Sklearn                &  euclidean &  0.753293 &  0.00122619 \\
+            \bottomrule
+          \end{tabular}
+
+        \subsection{f)}
+          \begin{tabular}{lrr}
+            \toprule
+            {} &     Score &  Time (s) \\
+            \midrule
+            SVR                     &  0.882675 &  5.843504 \\
+            Decision Tree Regressor &  0.829021 &  0.004186 \\
+            Random Forest Regressor &  0.856708 &  0.011647 \\
+            \bottomrule
+          \end{tabular}
+
+        \subsection{g)}
+          \begin{tabular}{cccc}
+            \toprule
+            Classifier &  Neighbors &    Distance Measure &    Score \\
+            \midrule
+            KNN &          2 &              Manhattan &  0.37 (+/-1.57) \\
+            KNN &          3 &              Manhattan &  0.42 (+/-1.42) \\
+            KNN &          4 &              Manhattan &  0.41 (+/-1.41) \\
+            KNN &          5 &              Manhattan &  0.44 (+/-1.34) \\
+            KNN &          6 &              Manhattan &  0.43 (+/-1.35) \\
+            KNN &          7 &              Manhattan &  0.43 (+/-1.40) \\
+            KNN &          8 &              Manhattan &  0.43 (+/-1.32) \\
+            KNN &          9 &              Manhattan &  0.43 (+/-1.32) \\
+            KNN &         10 &              Manhattan &  0.43 (+/-1.34) \\
+            KNN &         11 &              Manhattan &  0.42 (+/-1.32) \\
+            KNN &         12 &              Manhattan &  0.41 (+/-1.28) \\
+            KNN &          2 &              Euclidean &  0.33 (+/-1.71) \\
+            KNN &          3 &              Euclidean &  0.34 (+/-1.53) \\
+            KNN &          4 &              Euclidean &  0.38 (+/-1.44) \\
+            KNN &          5 &              Euclidean &  0.38 (+/-1.38) \\
+            KNN &          6 &              Euclidean &  0.38 (+/-1.42) \\
+            KNN &          7 &              Euclidean &  0.36 (+/-1.46) \\
+            KNN &          8 &              Euclidean &  0.33 (+/-1.46) \\
+            KNN &          9 &              Euclidean &  0.33 (+/-1.41) \\
+            KNN &         10 &              Euclidean &  0.32 (+/-1.44) \\
+            KNN &         11 &              Euclidean &  0.30 (+/-1.45) \\
+            KNN &         12 &              Euclidean &  0.29 (+/-1.51) \\
+            KNN &          2 &  Minkowski p=$2^{1.5}$ &  0.31 (+/-1.67) \\
+            KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.35 (+/-1.53) \\
+            KNN &          4 &  Minkowski p=$2^{1.5}$ &  0.36 (+/-1.43) \\
+            KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.36 (+/-1.41) \\
+            KNN &          6 &  Minkowski p=$2^{1.5}$ &  0.35 (+/-1.44) \\
+            KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.32 (+/-1.48) \\
+            KNN &          8 &  Minkowski p=$2^{1.5}$ &  0.31 (+/-1.46) \\
+            KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.30 (+/-1.44) \\
+            KNN &         10 &  Minkowski p=$2^{1.5}$ &  0.29 (+/-1.44) \\
+            KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.26 (+/-1.52) \\
+            KNN &         12 &  Minkowski p=$2^{1.5}$ &  0.25 (+/-1.57) \\
+            \bottomrule
+          \end{tabular}
 \end{document}

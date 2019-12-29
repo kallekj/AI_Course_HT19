@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1577464779 "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.tex" "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.pdf" "maint" 1577464779
-  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.aux" 1577464779 114 92ab271532ccaf304ae00c129c4d773e ""
-  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.tex" 1577464779 2933 d4ac6487270ad19896d0b5ba67d47c4c ""
+["pdflatex"] 1577659935 "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.tex" "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.pdf" "maint" 1577659936
+  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.aux" 1577659936 658 e5b434ad90a89f95c801d1c3c0357bce ""
+  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.tex" 1577659935 7393 c17225819c9da17b1049e93400b9e361 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -34,11 +34,11 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1570096904 4655696 1f4362f1151bda5cf6a8ef1247783eba ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1570096960 4264936 35431b073850e9331d441584f2584fec ""
   "/usr/local/texlive/2019/texmf.cnf" 1570096896 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "maint.aux" 1577464779 114 92ab271532ccaf304ae00c129c4d773e "pdflatex"
-  "maint.tex" 1577464779 2933 d4ac6487270ad19896d0b5ba67d47c4c ""
+  "maint.aux" 1577659936 658 e5b434ad90a89f95c801d1c3c0357bce "pdflatex"
+  "maint.tex" 1577659935 7393 c17225819c9da17b1049e93400b9e361 ""
   (generated)
-  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.log"
-  "maint.aux"
-  "maint.pdf"
-  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.pdf"
   "maint.log"
+  "maint.aux"
+  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.log"
+  "/home/kalle/Documents/Skola/AI_Course_HT19/Lab_4/lab4/Lab4/Report/maint.pdf"
+  "maint.pdf"
