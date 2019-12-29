@@ -20,8 +20,8 @@ print ('***************************************')
 
 results = {"Own KNN_Regressor_fast":{}, "Own KNN_Regressor":{}, "Sklearn":{}}
 k = 5
-algorithm = "manhattan"
-p=1 #p=1 manhattan, p=2 euclidean
+algorithm = "euclidean"
+p=2 #p=1 manhattan, p=2 euclidean
 
 
 print("Now running KNN_Regressor_fast()")
@@ -66,4 +66,6 @@ computeTime = time.time() - start
 results.get("Sklearn").update({"Algorithm":algorithm, "Score":classifier3.score(X_test, Y_test), "Time (s)":computeTime})
 
 
-print("\n",pd.DataFrame(results).transpose())
+df = pd.DataFrame(results).transpose()
+print("\n\n\n", df.to_latex())
+print("\n",df)
