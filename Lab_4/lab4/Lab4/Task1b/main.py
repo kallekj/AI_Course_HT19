@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+import time
 
 
 print("*********** Loading data **************")
@@ -18,6 +18,8 @@ print('Length of Train Data:', len(X_train))
 print('Length of Test Data:', len(X_test))
 print ('***************************************')
 
+results = {"SVC":{}, "Decision Tree":{}, "Random Forest":{}}
+
 classifiers = [
     SVC(kernel="linear", C=0.025),
     DecisionTreeClassifier(max_depth=5),
@@ -27,6 +29,11 @@ classifiers = [
 names = ["SVC", "Decision Tree", "Random Forest"]
 
 for classifier, name in zip(classifiers, names):
+    start = time.time()
     classifier.fit(X_train, Y_train)
-    print("Classifier: {}, Score: {}".format(name, classifier.score(X_test, Y_test)))
+    computeTime = time.time() - start
+    results.get(name).update({"Score":classifier.score(X_test, Y_test), "Time (s)":computeTime})
 
+df = pd.DataFrame(results).transpose()
+print("\n\n\n", df.to_latex())
+print("\n",df)
