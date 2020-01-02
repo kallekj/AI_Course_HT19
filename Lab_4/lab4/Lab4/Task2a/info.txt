@@ -1,0 +1,31 @@
+VALUES:
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
+    9: 9
+    T: 10
+    J: 11
+    Q: 12
+    K: 13
+    A: 14
+RANKS: 
+    0: highcard, 
+    1: onepair, 
+    2: twopair, 
+    3: 3ofakind, 
+    4: straight,
+    5: flush, 
+    6: fullhouse,
+    7: 4ofakind, 
+    8: straightflush
+ACTIONS: 
+    Fold: 0, 
+    Call: 1, 
+    Raise: 2, 
+    Allin: 3
+NO_DATA:
+    NO_DATA: -1
