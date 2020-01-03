@@ -28,7 +28,7 @@
         \centering
         \begin{tabular}{lcccc}
           \toprule
-          {} & Algorithm & Accuracy (\%) & Correct &   Time (s) \\
+          {Classifiers $k=5$} & Algorithm & Accuracy (\%) & Correct &   Time (s) \\
           \midrule
           Own KNN\_Classifier\_fast &  euclidean &       0.8525 &     341/400 &    4.76143 \\
           Own KNN\_Classifier      &  euclidean &       0.8525 &     341/400 &    54.7676 \\
@@ -57,11 +57,11 @@
           \label{tbl:task1b}
           \begin{tabular}{lrr}
             \toprule
-            {} &   Score &  Time (s) \\
+            {Classifiers} &   Score ($R^2$)&  Time (s) \\
             \midrule
-            SVC           &  0.9475 &  0.230703 \\
-            Decision Tree &  0.8800 &  0.005497 \\
-            Random Forest &  0.9100 &  0.013979 \\
+            SVC, $kernel=linear,~C=0.025$ &  0.9475 &  0.230703 \\
+            Decision Tree, $max\_depth=5$ &  0.8800 &  0.005497 \\
+            Random Forest, $max\_depth=5, n\_esti=10, max\_feat=1$ &  0.9100 &  0.013979 \\
             \bottomrule
           \end{tabular}
           \caption{Performance between three classification algorithms, higher score is better.}
@@ -74,12 +74,13 @@
         
 
       \subsection{c)}
+        \label{ssc:1c}
         \begin{table}[h]
           \centering
           \label{tbl:task1c}
           \begin{tabular}{cccc}
             \toprule
-            Classifier &  Neighbors & Distance Measure &           Score \\
+            Classifier &  Neighbors & Distance Measure &           Score (Mean/Std)\\
             \midrule
             KNN &          3 &              Manhattan &  0.73 (+/-0.45) \\
             KNN &          5 &              Manhattan &  0.73 (+/-0.45) \\
@@ -98,13 +99,13 @@
             KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.47) \\
             \bottomrule
           \end{tabular}
-          \caption{KNN-Regression with different amount of neighbors and distance algorithms}
+          \caption{Cross-Validation score of KNN-Classifier with different amount of neighbors and distance algorithms}
         \end{table}
         To change the distance algorithm used, you initialize the constructor with the parameter $p$ set to a 
         specific value. $p=1$ is for Manhattan-distance and $p=2$ is for Euclidean-distance.
         If you set $p$ to another value you can calculate other types of distances, the algorithm used 
         is the Minkowski-distance algorithm \cite{Minkowski}.
-        In Table \ref{tbl:task1c} we can se the difference in performance depending on distance algorithm 
+        In Table \ref{tbl:task1c} we can se the difference in performance (using cross-validation) depending on distance algorithm 
         and amount of neighbors. On this data set the Manhattan-distance perform slightly 
         better than the Euclidean-distance, the best one is with $K=7$.
         \subsection{e)}
@@ -113,7 +114,7 @@
             \label{tbl:task1e}
             \begin{tabular}{llll}
               \toprule
-              {} &  Algorithm &     Score &    Time (s) \\
+              {Regressors $k=5$} &  Algorithm &     Score ($R^2$)&    Time (s) \\
               \midrule
               Own KNN\_Regressor\_fast &  euclidean &  0.395646 &     9.06785 \\
               Own KNN\_Regressor      &  euclidean &  0.395646 &     78.4536 \\
@@ -122,95 +123,153 @@
             \end{tabular}
             \caption{Performance of own KNN-Regression algorithm vs sklearn on estimating Fuel Consumption.}
           \end{table}
+          A regression algorithm is used to estimate a value for a specific feature, in this case we use it to estimate the fuel consumption. 
+          The only modification done to the algorithm compared to the classification version is that it now returns the mean of the K nearest classes. 
           As we can see in the Table \ref{tbl:task1e}, KNN-Regression isn't working too well on estimating the
-          fuel consumption in this data set. This is partly due to that KNN is sort of a improved look-up table 
-          and on data which is
+          fuel consumption on this data set. This is partly due to that KNN is sort of a improved look-up table 
+          and is relatively simple, which is why it doesn't perform great in all occasions.
         \subsection{f)}
           \begin{table}[h]
             \centering
             \label{tbl:task1f}
             \begin{tabular}{lrr}
               \toprule
-              {} &     Score &  Time (s) \\
+              {Regressors} &     Score ($R^2$) &  Time (s) \\
               \midrule
-              SVR                     &  0.768634 &  3.850483 \\
-              Decision Tree Regressor &  0.754809 &  0.007603 \\
-              Random Forest Regressor &  0.608807 &  0.023281 \\
+              SVR,  $kernel=linear,~C=0.025$    &  0.768634 &  3.850483 \\
+              Decision Tree Regressor, $max\_depth=5$ &  0.754809 &  0.007603 \\
+              Random Forest Regressor, $max\_depth=5, n\_esti=10, max\_feat=1$ &  0.608807 &  0.023281 \\
               \bottomrule
             \end{tabular}
+            \caption{Performance of three different regression algorithms from the sklearn library.}
           \end{table}
+          With the use of other regression algorithms we can get much better prediction results compared to KNN-Regression, as we can see in Table \ref{tbl:task1f} SVR and Decision Tree Regressor 
+          perform almost twice as good as KNN-Regression. Out the tree algorithms tested, the SVR (Scalar Vector Regressor) performed best, bust was also much slower compared to Decision Tree Regressor. 
+          The DTR algorithm did almost score as high as the SVR algorithm but were much faster to calculate.
+
         \subsection{g)}
-          \begin{tabular}{cccc}
-            \toprule
-            Classifier &  Neighbors &    Distance Measure &    Score \\
-            \midrule
-            KNN &          3 &              Manhattan &  -0.31 (+/-2.87) \\
-            KNN &          5 &              Manhattan &  -0.27 (+/-2.94) \\
-            KNN &          7 &              Manhattan &  -0.17 (+/-2.61) \\
-            KNN &          9 &              Manhattan &  -0.15 (+/-2.46) \\
-            KNN &         11 &              Manhattan &  -0.11 (+/-2.38) \\
-            KNN &          3 &              Euclidean &  -0.46 (+/-3.36) \\
-            KNN &          5 &              Euclidean &  -0.35 (+/-3.02) \\
-            KNN &          7 &              Euclidean &  -0.25 (+/-2.65) \\
-            KNN &          9 &              Euclidean &  -0.23 (+/-2.61) \\
-            KNN &         11 &              Euclidean &  -0.22 (+/-2.55) \\
-            KNN &          3 &  Minkowski p=$2^{1.5}$ &  -0.50 (+/-3.33) \\
-            KNN &          5 &  Minkowski p=$2^{1.5}$ &  -0.35 (+/-3.07) \\
-            KNN &          7 &  Minkowski p=$2^{1.5}$ &  -0.26 (+/-2.77) \\
-            KNN &          9 &  Minkowski p=$2^{1.5}$ &  -0.25 (+/-2.70) \\
-            KNN &         11 &  Minkowski p=$2^{1.5}$ &  -0.26 (+/-2.74) \\
-            \bottomrule
-          \end{tabular}
-      \section{Task 2}
-          \subsection{a)}
-          \subsection{b)}
-            \begin{tabular}{lrr}
-              \toprule
-              Classifier &  Score &  Time (s) \\
-              \midrule
-              KNN           &   0.75 &  0.000464 \\
-              SVC           &   0.95 &  0.017687 \\
-              Decision Tree &   1.00 &  0.000918 \\
-              \bottomrule
-            \end{tabular}
-          \subsection{c)}
+          \begin{table}[h]
+            \centering
+            \label{tbl:task1g}  
             \begin{tabular}{cccc}
               \toprule
-              Classifier &  Neighbors &       Distance Measure &           Score \\
+              Classifier &  Neighbors &    Distance Measure &    Score (Mean/Std)\\
               \midrule
-              KNN &          2 &              Manhattan &  0.70 (+/-0.30) \\
-              KNN &          3 &              Manhattan &  0.75 (+/-0.22) \\
-              KNN &          4 &              Manhattan &  0.72 (+/-0.29) \\
-              KNN &          5 &              Manhattan &  0.80 (+/-0.25) \\
-              KNN &          6 &              Manhattan &  0.70 (+/-0.20) \\
-              KNN &          7 &              Manhattan &  0.70 (+/-0.34) \\
-              KNN &          8 &              Manhattan &  0.62 (+/-0.27) \\
-              KNN &          9 &              Manhattan &  0.60 (+/-0.29) \\
-              KNN &         10 &              Manhattan &  0.50 (+/-0.27) \\
-              KNN &         11 &              Manhattan &  0.45 (+/-0.12) \\
-              KNN &         12 &              Manhattan &  0.47 (+/-0.19) \\
-              KNN &          2 &              Euclidean &  0.65 (+/-0.29) \\
-              KNN &          3 &              Euclidean &  0.75 (+/-0.22) \\
-              KNN &          4 &              Euclidean &  0.72 (+/-0.37) \\
-              KNN &          5 &              Euclidean &  0.70 (+/-0.30) \\
-              KNN &          6 &              Euclidean &  0.65 (+/-0.19) \\
-              KNN &          7 &              Euclidean &  0.57 (+/-0.25) \\
-              KNN &          8 &              Euclidean &  0.45 (+/-0.25) \\
-              KNN &          9 &              Euclidean &  0.40 (+/-0.19) \\
-              KNN &         10 &              Euclidean &  0.38 (+/-0.16) \\
-              KNN &         11 &              Euclidean &  0.42 (+/-0.12) \\
-              KNN &         12 &              Euclidean &  0.40 (+/-0.10) \\
-              KNN &          2 &  Minkowski p=$2^{1.5}$ &  0.60 (+/-0.37) \\
-              KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.20) \\
-              KNN &          4 &  Minkowski p=$2^{1.5}$ &  0.72 (+/-0.37) \\
-              KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.65 (+/-0.33) \\
-              KNN &          6 &  Minkowski p=$2^{1.5}$ &  0.60 (+/-0.40) \\
-              KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.60 (+/-0.19) \\
-              KNN &          8 &  Minkowski p=$2^{1.5}$ &  0.50 (+/-0.00) \\
-              KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.42 (+/-0.25) \\
-              KNN &         10 &  Minkowski p=$2^{1.5}$ &  0.40 (+/-0.10) \\
-              KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.42 (+/-0.12) \\
-              KNN &         12 &  Minkowski p=$2^{1.5}$ &  0.40 (+/-0.19) \\
+              KNN &          3 &              Manhattan &  -0.31 (+/-2.87) \\
+              KNN &          5 &              Manhattan &  -0.27 (+/-2.94) \\
+              KNN &          7 &              Manhattan &  -0.17 (+/-2.61) \\
+              KNN &          9 &              Manhattan &  -0.15 (+/-2.46) \\
+              KNN &         11 &              Manhattan &  -0.11 (+/-2.38) \\
+              KNN &          3 &              Euclidean &  -0.46 (+/-3.36) \\
+              KNN &          5 &              Euclidean &  -0.35 (+/-3.02) \\
+              KNN &          7 &              Euclidean &  -0.25 (+/-2.65) \\
+              KNN &          9 &              Euclidean &  -0.23 (+/-2.61) \\
+              KNN &         11 &              Euclidean &  -0.22 (+/-2.55) \\
+              KNN &          3 &  Minkowski p=$2^{1.5}$ &  -0.50 (+/-3.33) \\
+              KNN &          5 &  Minkowski p=$2^{1.5}$ &  -0.35 (+/-3.07) \\
+              KNN &          7 &  Minkowski p=$2^{1.5}$ &  -0.26 (+/-2.77) \\
+              KNN &          9 &  Minkowski p=$2^{1.5}$ &  -0.25 (+/-2.70) \\
+              KNN &         11 &  Minkowski p=$2^{1.5}$ &  -0.26 (+/-2.74) \\
               \bottomrule
             \end{tabular}
+            \caption{Cross-Validation score of KNN-Regression with different amount of neighbors and distance algorithms}
+            As previously discussed in Task \ref{ssc:1c} 1c), the distance algorithm used is changed by changing the value of $p$.
+            In Table \ref{tbl:task1g} we see that KNN-Regression perform quite bad on estimating the Fuel Consumption, with a low score and 
+            high standard deviation, but the best performing one out of the tested values were with Manhattan Distance as distance measure and $K=11$.
+          \end{table}
+      \section{Task 2}
+          \subsection{a)}
+            To use the data in \verb$Lab4PokerData.csv$ we first need to translate the data to something a classification algorithm can understand, the text in the data
+            were translated as followed:
+            \begin{table}[H]
+              \centering
+              \label{tbl:task1f}
+              \begin{tabular}{lrrr}
+                \toprule
+                Values &     Ranks &  Actions & Empty Cell \\
+                \midrule
+                2: 2 & 0: highcard & 0: Fold & -1: NO\_DATA \\
+                3: 3 & 1: onepair & 1: Call & {} \\
+                4: 4 & 2: twopair & 2: Raise & {} \\
+                5: 5 & 3: 3ofakind & 3: Allin & {} \\
+                6: 6 & 4: straight & {} & {} \\
+                7: 7 & 5: flush & {} & {} \\
+                8: 8 & 6: fullhouse & {} & {} \\
+                9: 9 & 7: 4ofakind & {} & {} \\
+                T: 10 & 8: straightflush & {} & {} \\
+                J: 11 & {} & {} & {} \\
+                Q: 12 & {} & {} & {} \\
+                K: 13 & {} & {} & {} \\
+                A: 14 & {} & {} & {} \\
+                \bottomrule
+              \end{tabular}
+              \caption{Translation table for data in Lab4PokerData.csv}
+            \end{table}
+            To make it easier to understand the data, every column were assigned with a name. Following 
+            table shows an example of the labels used.
+            \begin{table}[H]
+              \centering
+              \label{tbl:task1f}
+              \begin{tabular}{llll}
+                \toprule
+                p1\_hand\_category & p1\_hand\_rank &  p1\_hand\_value & p1\_action\_$n$ \\ p1\_raise\_$n$ & p1\_money\_left & p1\_spent\_per\_hand\_value & p1\_final\_action \\
+                \midrule
+                p2\_hand\_category & p2\_hand\_rank &  p2\_hand\_value & p2\_action\_$n$ \\ p2\_raise\_$n$ & p2\_money\_left & p2\_spent\_per\_hand\_value & p2\_final\_action \\
+                \bottomrule
+              \end{tabular}
+              \caption{Labels of each column in Lab4PokerData.csv, $n$ is for each round.}
+            \end{table}
+            The added attributes are \textit{pX\_money\_left, pX\_spent\_per\_hand\_value \& pX\_final\_action}.
+            "\textit{pX\_money\_left}" is calculated by summing how much the player bet each round and subtract it from $400$.
+            "\textit{pX\_spent\_per\_hand\_value}" is derived from dividing how much a player spent on that round with the given hand value.
+            
+          \subsection{b)}
+            \begin{table}[h]  
+              \label{tbl:task2b}
+              \centering
+              \begin{tabular}{lrr}
+                \toprule
+                Classifier              &   Score ($R^2$)&  Time (s) \\
+                \midrule
+                KNN, $k=5$                    &   0.75 &  0.000464 \\
+                SVC, $kernel=linear,~C=0.025$ &   0.95 &  0.017687 \\
+                Decision Tree, $max\_depth=5$ &   1.00 &  0.000918 \\
+                \bottomrule
+              \end{tabular}
+              \caption{Performance of three different classification algorithms on the Poker Data set.}
+            \end{table}
+            Here we get some really interesting results, the Decision Tree Classifier manages to score 
+            $1.00$ which means it got every prediction correct. The SVC algorithm did also perform really good with
+            a score of $0.95$. The KNN-Classifier did not perform as good as the other two algorithms with a score of
+            only $0.75$, but it was the fastest among the three.
+          
+          \subsection{c)}
+            \begin{table}[h]
+              \label{tbl:task2c}
+              \centering
+              \begin{tabular}{cccc}
+                \toprule
+                Classifier &  Neighbors &       Distance Measure &           Score (Mean/Std)\\
+                \midrule
+                KNN &          3 &              Manhattan &  0.75 (+/-0.22) \\
+                KNN &          5 &              Manhattan &  0.80 (+/-0.25) \\
+                KNN &          7 &              Manhattan &  0.70 (+/-0.34) \\
+                KNN &          9 &              Manhattan &  0.60 (+/-0.29) \\
+                KNN &         11 &              Manhattan &  0.45 (+/-0.12) \\
+                KNN &          3 &              Euclidean &  0.75 (+/-0.22) \\
+                KNN &          5 &              Euclidean &  0.70 (+/-0.30) \\
+                KNN &          7 &              Euclidean &  0.57 (+/-0.25) \\
+                KNN &          9 &              Euclidean &  0.40 (+/-0.19) \\
+                KNN &         11 &              Euclidean &  0.42 (+/-0.12) \\
+                KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.20) \\
+                KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.65 (+/-0.33) \\
+                KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.60 (+/-0.19) \\
+                KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.42 (+/-0.25) \\
+                KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.42 (+/-0.12) \\
+                \bottomrule
+              \end{tabular}
+              \caption{Cross-Validation score of KNN-Classifier with different amount of neighbors and distance algorithms}
+            \end{table}
+            When trying different parameters for the KNN-Classifier we can tell by the results in Table \ref{tbl:task2c} that the Manhattan Distance as distance measure and with $k=5$ perform
+            best. We can also tell that the score drops rapidly with $k > 5$ for all the different distance measures tested.
 \end{document}
