@@ -17,13 +17,13 @@ print('Length of Train Data:', len(X_train))
 print('Length of Test Data:', len(X_test))
 print ('***************************************')
 
-results = {"Own KNN_Regressor_fast":{}, "Own KNN_Regressor":{}, "Sklearn":{}}
+results = {"Own KNN_Classifier_fast":{}, "Own KNN_Classifier":{}, "Sklearn":{}}
 k = 5
 algorithm = "euclidean"
 p=2 #p=1 manhattan, p=2 euclidean
 
 correct = 0
-print("Now running KNN_Regressor()")
+print("Now running KNN_Classifier()")
 start = time.time()
 classifier = KNN(k=k, distanceFormula=algorithm)
 for i, predict in enumerate(X_test):
@@ -31,10 +31,10 @@ for i, predict in enumerate(X_test):
     if result[0][0] == Y_test[i]:
         correct += 1
 computeTime = time.time() - start
-results.get("Own KNN_Regressor").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
+results.get("Own KNN_Classifier").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
 
 correct = 0
-print("Now running KNN_Regressor_fast()")
+print("Now running KNN_Classifier_fast()")
 classifier2 = KNN_fast(k=k, distanceFormula="euclidean")
 start = time.time()
 for i, predict in enumerate(X_test):
@@ -42,7 +42,7 @@ for i, predict in enumerate(X_test):
     if result[0][0] == Y_test[i]:
         correct += 1
 computeTime = time.time() - start
-results.get("Own KNN_Regressor_fast").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
+results.get("Own KNN_Classifier_fast").update({"Algorithm":algorithm,"Accuracy (%)":correct/len(Y_test), "Correct":correct, "Time (s)":computeTime})
 
 
 print("Now running KNeighborsClassifier()")

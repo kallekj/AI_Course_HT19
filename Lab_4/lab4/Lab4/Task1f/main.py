@@ -8,8 +8,8 @@ import time
 
 print("*********** Loading data **************")
 data = pd.read_csv("../Lab4Data.csv", delimiter=";")
-X = np.array(data.drop(["DriverPerformance"], 1))
-Y = np.array(data["DriverPerformance"])
+X = np.array(data.drop(["FuelConsum"], 1))
+Y = np.array(data["FuelConsum"])
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size=0.2)
 
 print ('***************************************')
