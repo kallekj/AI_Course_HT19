@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage[a4paper, width=150mm, top=25mm, bottom=25mm, bindingoffset=6mm]{geometry} 
+\usepackage{verbatim}
 
 
 \title{AI Lab 2}
@@ -22,129 +23,142 @@
 
     \section{Task 1}
       \subsection{a)}
+      \begin{table}[h]
+        \label{tbl:task1A}
+        \centering
         \begin{tabular}{lcccc}
           \toprule
           {} & Algorithm & Accuracy (\%) & Correct &   Time (s) \\
           \midrule
-          Own KNN\_Regressor\_fast &  euclidean &       0.8525 &     341 &    4.76143 \\
-          Own KNN\_Regressor      &  euclidean &       0.8525 &     341 &    54.7676 \\
-          Sklearn                &  euclidean &       0.8525 &     341 &  0.0145493 \\
-          
+          Own KNN\_Classifier\_fast &  euclidean &       0.8525 &     341/400 &    4.76143 \\
+          Own KNN\_Classifier      &  euclidean &       0.8525 &     341/400 &    54.7676 \\
+          Sklearn                &  euclidean &       0.8525 &     341/400 &  0.0145493 \\          
           \bottomrule
         \end{tabular}
+        \caption{Performance of own KNN algorithm vs sklearn implementation.}
+      \end{table}
+      In this task we had to implement our own version of a KNN\_Classifier. The Algorithm works by
+      calculating the distance from one data point to another, and assigning the class to the new data point 
+      which the K-Nerest-Neighbors has.
+      
+      The difference between \verb$KNN_Classifier$ and \verb$KNN_Classifier_fast$ is that the faster
+      version only keep track of the K closest distances currently calculated, this means that you 
+      don't have to sort the whole list of calculated distances, (which increases every time you calculate a distance).
+      With the faster algorithm, you only need to sort a list with K elements in it. This also saves on memory allocation.
+
+      As we can see in Table \ref{tbl:task1A}, both version of the own implementation perform equally good compared to the 
+      KNN-algorithm implemented by scikit-learn. The only difference is the execution time, where the scikit-learn 
+      implementation is much faster.
+
 
       \subsection{b)}
-        \begin{tabular}{lrr}
-          \toprule
-          {} &   Score &  Time (s) \\
-          \midrule
-          SVC           &  0.9475 &  0.230703 \\
-          Decision Tree &  0.8800 &  0.005497 \\
-          Random Forest &  0.9100 &  0.013979 \\
-          \bottomrule
-        \end{tabular}
-
-      \subsection{c)}
-        \begin{tabular}{cccc}
-          \toprule
-          Classifier &  Neighbors & Distance Measure &           Score \\
-          \midrule
-          KNN &          2 &              Manhattan &  0.68 (+/-0.45) \\
-          KNN &          3 &              Manhattan &  0.73 (+/-0.45) \\
-          KNN &          4 &              Manhattan &  0.73 (+/-0.47) \\
-          KNN &          5 &              Manhattan &  0.73 (+/-0.45) \\
-          KNN &          6 &              Manhattan &  0.74 (+/-0.45) \\
-          KNN &          7 &              Manhattan &  0.74 (+/-0.45) \\
-          KNN &          8 &              Manhattan &  0.71 (+/-0.47) \\
-          KNN &          9 &              Manhattan &  0.71 (+/-0.47) \\
-          KNN &         10 &              Manhattan &  0.70 (+/-0.48) \\
-          KNN &         11 &              Manhattan &  0.73 (+/-0.48) \\
-          KNN &         12 &              Manhattan &  0.71 (+/-0.47) \\
-          KNN &          2 &              Euclidean &  0.69 (+/-0.44) \\
-          KNN &          3 &              Euclidean &  0.70 (+/-0.45) \\
-          KNN &          4 &              Euclidean &  0.70 (+/-0.44) \\
-          KNN &          5 &              Euclidean &  0.71 (+/-0.48) \\
-          KNN &          6 &              Euclidean &  0.69 (+/-0.49) \\
-          KNN &          7 &              Euclidean &  0.70 (+/-0.50) \\
-          KNN &          8 &              Euclidean &  0.68 (+/-0.48) \\
-          KNN &          9 &              Euclidean &  0.68 (+/-0.48) \\
-          KNN &         10 &              Euclidean &  0.68 (+/-0.49) \\
-          KNN &         11 &              Euclidean &  0.67 (+/-0.48) \\
-          KNN &         12 &              Euclidean &  0.68 (+/-0.49) \\
-          KNN &          2 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.45) \\
-          KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.47) \\
-          KNN &          4 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.45) \\
-          KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.49) \\
-          KNN &          6 &  Minkowski p=$2^{1.5}$ &  0.69 (+/-0.47) \\
-          KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.47) \\
-          KNN &          8 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.48) \\
-          KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.48) \\
-          KNN &         10 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.48) \\
-          KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.47) \\
-          KNN &         12 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.47) \\
-          \bottomrule
-        \end{tabular}
-
-        \subsection{e)}
-          \begin{tabular}{llll}
-            \toprule
-            {} &  Algorithm &     Score &    Time (s) \\
-            \midrule
-            Own KNN\_Regressor\_fast &  euclidean &  0.753293 &     4.68343 \\
-            Own KNN\_Regressor      &  euclidean &  0.753293 &     41.3229 \\
-            Sklearn                &  euclidean &  0.753293 &  0.00122619 \\
-            \bottomrule
-          \end{tabular}
-
-        \subsection{f)}
+        \begin{table}[h]
+          \centering
+          \label{tbl:task1b}
           \begin{tabular}{lrr}
             \toprule
-            {} &     Score &  Time (s) \\
+            {} &   Score &  Time (s) \\
             \midrule
-            SVR                     &  0.882675 &  5.843504 \\
-            Decision Tree Regressor &  0.829021 &  0.004186 \\
-            Random Forest Regressor &  0.856708 &  0.011647 \\
+            SVC           &  0.9475 &  0.230703 \\
+            Decision Tree &  0.8800 &  0.005497 \\
+            Random Forest &  0.9100 &  0.013979 \\
             \bottomrule
           \end{tabular}
+          \caption{Performance between three classification algorithms, higher score is better.}
+        \end{table}
+        In this task we got to implement and compare three different algorithms from the scikit-learn 
+        library. I choose to test the performance on Scalar-Vector-Classifier (SVC), Decision Tree Classifier and
+        Random Forest Classifier.
+        From the data in Table \ref{tbl:task1b} we can see that they perform good on different measures, the SVC algorithm 
+        does the best prediction but is also the slowest. The Decision Tree algorithm is the worst one, but also the fastest.
+        
 
+      \subsection{c)}
+        \begin{table}[h]
+          \centering
+          \label{tbl:task1c}
+          \begin{tabular}{cccc}
+            \toprule
+            Classifier &  Neighbors & Distance Measure &           Score \\
+            \midrule
+            KNN &          3 &              Manhattan &  0.73 (+/-0.45) \\
+            KNN &          5 &              Manhattan &  0.73 (+/-0.45) \\
+            KNN &          7 &              Manhattan &  0.74 (+/-0.45) \\
+            KNN &          9 &              Manhattan &  0.71 (+/-0.47) \\
+            KNN &         11 &              Manhattan &  0.73 (+/-0.48) \\
+            KNN &          3 &              Euclidean &  0.70 (+/-0.45) \\
+            KNN &          5 &              Euclidean &  0.71 (+/-0.48) \\
+            KNN &          7 &              Euclidean &  0.70 (+/-0.50) \\
+            KNN &          9 &              Euclidean &  0.68 (+/-0.48) \\
+            KNN &         11 &              Euclidean &  0.67 (+/-0.48) \\
+            KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.68 (+/-0.47) \\
+            KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.49) \\
+            KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.70 (+/-0.47) \\
+            KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.48) \\
+            KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.67 (+/-0.47) \\
+            \bottomrule
+          \end{tabular}
+          \caption{KNN-Regression with different amount of neighbors and distance algorithms}
+        \end{table}
+        To change the distance algorithm used, you initialize the constructor with the parameter $p$ set to a 
+        specific value. $p=1$ is for Manhattan-distance and $p=2$ is for Euclidean-distance.
+        If you set $p$ to another value you can calculate other types of distances, the algorithm used 
+        is the Minkowski-distance algorithm \cite{Minkowski}.
+        In Table \ref{tbl:task1c} we can se the difference in performance depending on distance algorithm 
+        and amount of neighbors. On this data set the Manhattan-distance perform slightly 
+        better than the Euclidean-distance, the best one is with $K=7$.
+        \subsection{e)}
+          \begin{table}[h]
+            \centering
+            \label{tbl:task1e}
+            \begin{tabular}{llll}
+              \toprule
+              {} &  Algorithm &     Score &    Time (s) \\
+              \midrule
+              Own KNN\_Regressor\_fast &  euclidean &  0.395646 &     9.06785 \\
+              Own KNN\_Regressor      &  euclidean &  0.395646 &     78.4536 \\
+              Sklearn                &  euclidean &  0.395646 &  0.00223327 \\
+              \bottomrule
+            \end{tabular}
+            \caption{Performance of own KNN-Regression algorithm vs sklearn on estimating Fuel Consumption.}
+          \end{table}
+          As we can see in the Table \ref{tbl:task1e}, KNN-Regression isn't working too well on estimating the
+          fuel consumption in this data set. This is partly due to that KNN is sort of a improved look-up table 
+          and on data which is
+        \subsection{f)}
+          \begin{table}[h]
+            \centering
+            \label{tbl:task1f}
+            \begin{tabular}{lrr}
+              \toprule
+              {} &     Score &  Time (s) \\
+              \midrule
+              SVR                     &  0.768634 &  3.850483 \\
+              Decision Tree Regressor &  0.754809 &  0.007603 \\
+              Random Forest Regressor &  0.608807 &  0.023281 \\
+              \bottomrule
+            \end{tabular}
+          \end{table}
         \subsection{g)}
           \begin{tabular}{cccc}
             \toprule
             Classifier &  Neighbors &    Distance Measure &    Score \\
             \midrule
-            KNN &          2 &              Manhattan &  0.37 (+/-1.57) \\
-            KNN &          3 &              Manhattan &  0.42 (+/-1.42) \\
-            KNN &          4 &              Manhattan &  0.41 (+/-1.41) \\
-            KNN &          5 &              Manhattan &  0.44 (+/-1.34) \\
-            KNN &          6 &              Manhattan &  0.43 (+/-1.35) \\
-            KNN &          7 &              Manhattan &  0.43 (+/-1.40) \\
-            KNN &          8 &              Manhattan &  0.43 (+/-1.32) \\
-            KNN &          9 &              Manhattan &  0.43 (+/-1.32) \\
-            KNN &         10 &              Manhattan &  0.43 (+/-1.34) \\
-            KNN &         11 &              Manhattan &  0.42 (+/-1.32) \\
-            KNN &         12 &              Manhattan &  0.41 (+/-1.28) \\
-            KNN &          2 &              Euclidean &  0.33 (+/-1.71) \\
-            KNN &          3 &              Euclidean &  0.34 (+/-1.53) \\
-            KNN &          4 &              Euclidean &  0.38 (+/-1.44) \\
-            KNN &          5 &              Euclidean &  0.38 (+/-1.38) \\
-            KNN &          6 &              Euclidean &  0.38 (+/-1.42) \\
-            KNN &          7 &              Euclidean &  0.36 (+/-1.46) \\
-            KNN &          8 &              Euclidean &  0.33 (+/-1.46) \\
-            KNN &          9 &              Euclidean &  0.33 (+/-1.41) \\
-            KNN &         10 &              Euclidean &  0.32 (+/-1.44) \\
-            KNN &         11 &              Euclidean &  0.30 (+/-1.45) \\
-            KNN &         12 &              Euclidean &  0.29 (+/-1.51) \\
-            KNN &          2 &  Minkowski p=$2^{1.5}$ &  0.31 (+/-1.67) \\
-            KNN &          3 &  Minkowski p=$2^{1.5}$ &  0.35 (+/-1.53) \\
-            KNN &          4 &  Minkowski p=$2^{1.5}$ &  0.36 (+/-1.43) \\
-            KNN &          5 &  Minkowski p=$2^{1.5}$ &  0.36 (+/-1.41) \\
-            KNN &          6 &  Minkowski p=$2^{1.5}$ &  0.35 (+/-1.44) \\
-            KNN &          7 &  Minkowski p=$2^{1.5}$ &  0.32 (+/-1.48) \\
-            KNN &          8 &  Minkowski p=$2^{1.5}$ &  0.31 (+/-1.46) \\
-            KNN &          9 &  Minkowski p=$2^{1.5}$ &  0.30 (+/-1.44) \\
-            KNN &         10 &  Minkowski p=$2^{1.5}$ &  0.29 (+/-1.44) \\
-            KNN &         11 &  Minkowski p=$2^{1.5}$ &  0.26 (+/-1.52) \\
-            KNN &         12 &  Minkowski p=$2^{1.5}$ &  0.25 (+/-1.57) \\
+            KNN &          3 &              Manhattan &  -0.31 (+/-2.87) \\
+            KNN &          5 &              Manhattan &  -0.27 (+/-2.94) \\
+            KNN &          7 &              Manhattan &  -0.17 (+/-2.61) \\
+            KNN &          9 &              Manhattan &  -0.15 (+/-2.46) \\
+            KNN &         11 &              Manhattan &  -0.11 (+/-2.38) \\
+            KNN &          3 &              Euclidean &  -0.46 (+/-3.36) \\
+            KNN &          5 &              Euclidean &  -0.35 (+/-3.02) \\
+            KNN &          7 &              Euclidean &  -0.25 (+/-2.65) \\
+            KNN &          9 &              Euclidean &  -0.23 (+/-2.61) \\
+            KNN &         11 &              Euclidean &  -0.22 (+/-2.55) \\
+            KNN &          3 &  Minkowski p=$2^{1.5}$ &  -0.50 (+/-3.33) \\
+            KNN &          5 &  Minkowski p=$2^{1.5}$ &  -0.35 (+/-3.07) \\
+            KNN &          7 &  Minkowski p=$2^{1.5}$ &  -0.26 (+/-2.77) \\
+            KNN &          9 &  Minkowski p=$2^{1.5}$ &  -0.25 (+/-2.70) \\
+            KNN &         11 &  Minkowski p=$2^{1.5}$ &  -0.26 (+/-2.74) \\
             \bottomrule
           \end{tabular}
       \section{Task 2}
@@ -152,7 +166,7 @@
           \subsection{b)}
             \begin{tabular}{lrr}
               \toprule
-              {} &  Score &  Time (s) \\
+              Classifier &  Score &  Time (s) \\
               \midrule
               KNN           &   0.75 &  0.000464 \\
               SVC           &   0.95 &  0.017687 \\
@@ -160,9 +174,9 @@
               \bottomrule
             \end{tabular}
           \subsection{c)}
-            \begin{tabular}{llrll}
+            \begin{tabular}{cccc}
               \toprule
-              {} & Classifier &  Neighbors &       Distance Measure &           Score \\
+              Classifier &  Neighbors &       Distance Measure &           Score \\
               \midrule
               KNN &          2 &              Manhattan &  0.70 (+/-0.30) \\
               KNN &          3 &              Manhattan &  0.75 (+/-0.22) \\
